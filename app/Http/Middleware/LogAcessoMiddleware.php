@@ -24,6 +24,6 @@ class LogAcessoMiddleware
         $resposta = $next($request);
         $resposta->setStatusCode(201);
 
-        dd($resposta);
+        return($resposta);
     }
 }
