@@ -1,4 +1,4 @@
-@extends('site.layouts.base')
+@extends('site.layouts.basico')
 
 @section('titulo', 'Home')
 
