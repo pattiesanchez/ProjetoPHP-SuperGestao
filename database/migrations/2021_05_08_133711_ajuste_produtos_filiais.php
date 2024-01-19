@@ -13,13 +13,15 @@ class AjusteProdutosFiliais extends Migration
      */
     public function up()
     {
-        Schema::create('filiais', function (Blueprint $table){
+        //criando a tabela filiais
+        Schema::create('filiais', function (Blueprint $table) {
             $table->id();
             $table->string('filial', 30);
             $table->timestamps();
         });
 
-        Schema::create('produto_filiais', function (Blueprint $table){
+        //criando a tabela produto_filiais
+        Schema::create('produto_filiais', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('filial_id');
             $table->unsignedBigInteger('produto_id');
@@ -28,12 +30,13 @@ class AjusteProdutosFiliais extends Migration
             $table->integer('estoque_maximo');
             $table->timestamps();
 
-            //foreign keys
+            //foreign key (constraints)
             $table->foreign('filial_id')->references('id')->on('filiais');
             $table->foreign('produto_id')->references('id')->on('produtos');
         });
 
-        Schema::table('produtos', function (Blueprint $table){
+        //removendo colunas da tabela produtos
+        Schema::table('produtos', function (Blueprint $table) {
             $table->dropColumn(['preco_venda', 'estoque_minimo', 'estoque_maximo']);
         });
     }
@@ -45,7 +48,8 @@ class AjusteProdutosFiliais extends Migration
      */
     public function down()
     {
-        Schema::table('produtos', function (Blueprint $table){
+        //adicionar colunas da tabela produtos
+        Schema::table('produtos', function (Blueprint $table) {
             $table->decimal('preco_venda', 8, 2);
             $table->integer('estoque_minimo');
             $table->integer('estoque_maximo');
