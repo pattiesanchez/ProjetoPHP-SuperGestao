@@ -42,9 +42,8 @@
                      </tr>
                   @endforeach
                </tbody>
-
             </table>
-            </form> 
+               {{ $fornecedores->appends($request)->links() }}
          </div>
       </div>
 
