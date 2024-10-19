@@ -77,4 +77,11 @@ class FornecedorController extends Controller
 
         return view('app.fornecedor.adicionar', ['msg' => $msg]);
     }
+    public function excluir($id){ 
+
+        Fornecedor::find($id)->delete(); // nao deleta do banco de dados e coloca a data no deleted_at
+        // Fornecedor::find($id)->forceDelete(); //deleta do banco de dados 
+
+        return redirect('/app/fornecedor');
+    }
 }
